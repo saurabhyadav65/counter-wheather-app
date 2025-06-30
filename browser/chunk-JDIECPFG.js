@@ -1,0 +1,1 @@
+import{Gc as o,Hc as r,tc as e,uc as t}from"./chunk-MQHGRAQ4.js";var c=r("counter"),C=o(c,n=>n.counters);var m=e("[Counter] Add Counter"),x=e("[Counter] Remove Counter",t()),a=e("[Counter] Increment Counter",t()),l=e("[Counter] Decrement Counter",t()),d=e("[Counter] Reset All");export{C as a,m as b,x as c,a as d,l as e,d as f};
