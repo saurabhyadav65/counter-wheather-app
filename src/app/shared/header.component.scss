@@ -1,0 +1,37 @@
+.navbar {
+  padding: 12px 24px;
+  background-color: #1976d2;
+  color: white;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.nav-links a {
+  margin-left: 16px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: #c5e1ff;
+}
+
+.active-link {
+  border-bottom: 2px solid white;
+}
+.nav-links{
+  display: flex;
+  justify-content: space-between;
+}
+.counterCount{
+    background: #b7adad;
+    padding: 5px;
+    font-size: 12px;
+    border-radius: 50%;
+    position: absolute;
+    margin-left: 5px;
+}

@@ -1,0 +1,68 @@
+<div class="weather-page">
+    <div class="weather-container">
+        <div class="input-group">
+            <input type="text" [(ngModel)]="cityInput" placeholder="Enter city name..." />
+            <button (click)="addCity()">+</button>
+            <button (click)="clearAll()">Clear</button>
+        </div>
+
+        <div class="city-list" *ngIf="cities$ | async as cities">
+            <div *ngIf="cities.length > 0; else noCities">
+                <div class="city" *ngFor="let city of cities" (click)="selectCity(city.name)">
+                    <div>
+                        <strong>{{ city.name }}</strong>
+                        <img [src]="'assets/weather-icons/animated/' + getAmChartsIcon(city.icon || '') + '.svg'"
+                            alt="weather icon" />
+                        <span>{{ city.temp }} °C</span>
+                    </div>
+                    <div class="city-actions">
+                        <button style="padding: 3px;" (click)="refresh(city.name); $event.stopPropagation()">
+                            <img style="height: 100%;" src="assets/weather-icons/Refresh_icon.png" alt="Refresh">
+                        </button>
+                        <button (click)="deleteCity(city.id); $event.stopPropagation()">X</button>
+                    </div>
+                </div>
+            </div>
+
+            <ng-template #noCities>
+                <div class="no-cities-msg">
+                    No recent cities found. Please search and add a city.
+                </div>
+            </ng-template>
+        </div>
+
+    </div>
+
+    <div *ngIf="forecast$ | async as forecast">
+        <div class="forecast-panel" *ngIf="forecast.length > 0">
+            <h3>5-Day Forecast</h3>
+
+            <div class="forecast-top">
+                <img class="icon"
+                    [src]="'assets/weather-icons/animated/' + getAmChartsIcon(selectedDay?.icon || '') + '.svg'"
+                    alt="weather icon" />
+                <div>
+                    <div class="main-temp">{{ selectedDay?.temp }} °C</div>
+                    <div class="details">
+                        <div>🌬️ Wind: {{ selectedDay?.wind }} m/s</div>
+                        <div>🌡️ Pressure: {{ selectedDay?.pressure }} hPa</div>
+                        <div>🌤️ Sky: {{ selectedDay?.description }}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="forecast-days">
+                <div *ngFor="let day of forecast; let i = index" (click)="selectDay(i, forecast)" class="forecast-day"
+                    [class.selected]="i === selectedDayIndex">
+                    <div class="date-label">{{ dayjs(day.date).format('D') }}</div>
+                    <div class="day-label">{{ day.day }}</div>
+                    <img [src]="'assets/weather-icons/animated/' + getAmChartsIcon(day.icon) + '.svg'"
+                        alt="weather icon" class="icon" />
+                    <div class="day-label">{{ day.temp }} °C</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

@@ -1,0 +1,24 @@
+<div class="counter-container">
+  <div class="controls">
+    <button (click)="addCounter()">Add</button>
+    <button (click)="reset()">Reset</button>
+  </div>
+
+ <div class="counter-list" *ngIf="counters$ | async as counters">
+  <div *ngIf="counters.length > 0; else noCounters">
+    <div *ngFor="let count of counters; let i = index" class="counter-card">
+      <span class="count">{{ count }}</span>
+      <div class="buttons">
+        <button (click)="inc(i)">+</button>
+        <button (click)="dec(i)">-</button>
+        <button class="delete" (click)="remove(i)">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noCounters>
+    <div class="no-counters-msg">
+      No counters found. Click “Add” to create one.
+    </div>
+  </ng-template>
+</div>

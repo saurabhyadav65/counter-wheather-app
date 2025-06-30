@@ -1,0 +1,7 @@
+<nav class="navbar">
+  <div class="nav-links">
+    <a routerLink="/counter" routerLinkActive="active-link">Counter App <span *ngIf="counterLength$ | async as counters"
+        [class.counterCount]="counters.length > 0">{{ (counterLength$ | async)?.length || '' }}</span></a>
+    <a routerLink="/vatavaran" routerLinkActive="active-link">Weather</a>
+  </div>
+</nav>
